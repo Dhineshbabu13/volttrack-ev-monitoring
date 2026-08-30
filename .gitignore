@@ -8,15 +8,15 @@ web_pro/.env
 node_modules/
 **/node_modules/
 
-# Large dataset files (due to GitHub 100MB single-file limit & LFS background timeout)
-*.xlsx
+# ML models / scratch
 *.pkl
-
-# Build and distribution outputs
 dist/
 **/dist/
 scratch/
 **/scratch/
+
+# Ignore raw uncompressed >100MB excel files (use the 57MB .zip dataset instead)
+EV_Dataset_2025_15000_Cars_Final_180K_Realistic.xlsx
 
 # IDE / Tool configs
 .vscode/
