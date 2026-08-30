@@ -1,0 +1,104 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model admins {
+  admin_id      String    @id @db.VarChar(50)
+  admin_name    String    @db.VarChar(100)
+  password_hash String
+  created_at    DateTime? @default(now()) @db.Timestamp(6)
+}
+
+model drivers {
+  driver_id                  String              @id @db.VarChar(30)
+  driver_name                String?             @db.VarChar(100)
+  date_of_birth              DateTime?           @db.Date
+  driver_age                 Int?
+  driver_mobile_number       String?             @db.VarChar(20)
+  driver_email               String?             @db.VarChar(150)
+  driver_licence_number      String?             @db.VarChar(50)
+  driver_years_of_experience Int?
+  driver_behaviour           String?             @db.VarChar(30)
+  password_hash              String
+  created_at                 DateTime?           @default(now()) @db.Timestamp(6)
+  telemetry_records          telemetry_records[]
+}
+
+model telemetry_records {
+  record_id                BigInt    @id
+  vehicle_id               String?   @db.VarChar(30)
+  driver_id                String?   @db.VarChar(30)
+  timestamp                DateTime  @db.Timestamp(6)
+  location                 String?   @db.VarChar(100)
+  destination_location     String?   @db.VarChar(100)
+  route_type               String?   @db.VarChar(30)
+  vehicle_status           String?   @db.VarChar(30)
+  speed_kmph               Decimal?  @db.Decimal(6, 2)
+  driving_mode             String?   @db.VarChar(30)
+  odometer_km              Decimal?  @db.Decimal(10, 2)
+  trip_distance_km         Decimal?  @db.Decimal(8, 2)
+  passenger_count          Int?
+  soc_percent              Decimal?  @db.Decimal(5, 2)
+  soh_percent              Decimal?  @db.Decimal(5, 2)
+  battery_voltage          Decimal?  @db.Decimal(6, 2)
+  battery_current          Decimal?  @db.Decimal(6, 2)
+  battery_temperature_c    Decimal?  @db.Decimal(5, 2)
+  ambient_temperature_c    Decimal?  @db.Decimal(5, 2)
+  energy_consumed_kwh      Decimal?  @db.Decimal(6, 2)
+  range_km                 Decimal?  @db.Decimal(6, 2)
+  charging_status          String?   @db.VarChar(30)
+  charging_power_kw        Decimal?  @db.Decimal(6, 2)
+  charging_duration_min    Decimal?  @db.Decimal(6, 2)
+  electricity_rate_per_kwh Decimal?  @db.Decimal(6, 2)
+  charging_cost            Decimal?  @db.Decimal(8, 2)
+  latitude                 Decimal?  @db.Decimal(9, 6)
+  longitude                Decimal?  @db.Decimal(9, 6)
+  can_reach_destination    String?   @db.VarChar(10)
+  maintenance_status       String?   @db.VarChar(30)
+  maintenance_due_km       Decimal?  @db.Decimal(10, 2)
+  last_service_date        DateTime? @db.Date
+  next_service_date        DateTime? @db.Date
+  maintenance_cost_inr     Decimal?  @db.Decimal(10, 2)
+  alert_status             String?   @db.VarChar(30)
+  trip_revenue             Decimal?  @db.Decimal(10, 2)
+  net_revenue_inr          Decimal?  @db.Decimal(10, 2)
+  drivers                  drivers?  @relation(fields: [driver_id], references: [driver_id], onDelete: NoAction, onUpdate: NoAction)
+  vehicles                 vehicles? @relation(fields: [vehicle_id], references: [vehicle_id], onDelete: NoAction, onUpdate: NoAction)
+
+  @@index([driver_id], map: "idx_telemetry_driver")
+  @@index([timestamp], map: "idx_telemetry_timestamp")
+  @@index([vehicle_id], map: "idx_telemetry_vehicle")
+}
+
+model vehicles {
+  vehicle_id              String              @id @db.VarChar(30)
+  car_reg_no              String?             @db.VarChar(30)
+  vehicle_brand           String?             @db.VarChar(50)
+  vehicle_model           String?             @db.VarChar(100)
+  vehicle_type            String?             @db.VarChar(50)
+  manufacturing_year      Int?
+  battery_capacity_kwh    Decimal?            @db.Decimal(6, 2)
+  weight_kg               Decimal?            @db.Decimal(8, 2)
+  motor_power_kw          Decimal?            @db.Decimal(6, 2)
+  length_mm               Decimal?            @db.Decimal(8, 2)
+  width_mm                Decimal?            @db.Decimal(8, 2)
+  height_mm               Decimal?            @db.Decimal(8, 2)
+  wheel_base_mm           Decimal?            @db.Decimal(8, 2)
+  gross_vehicle_weight_kg Decimal?            @db.Decimal(8, 2)
+  maximum_payload_kg      Decimal?            @db.Decimal(8, 2)
+  cargo_volume_l          Decimal?            @db.Decimal(8, 2)
+  torque                  Decimal?            @db.Decimal(8, 2)
+  max_passenger_capacity  Int?
+  telemetry_records       telemetry_records[]
+}
+
+model fleet_analytics_summary {
+  key          String   @id @db.VarChar(50)
+  data         Json
+  last_updated DateTime @default(now()) @db.Timestamp(6)
+}
+

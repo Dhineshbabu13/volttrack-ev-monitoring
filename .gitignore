@@ -1,0 +1,25 @@
+# Environment files
+.env
+*.env
+.env.*
+web_pro/.env
+
+# Dependencies
+node_modules/
+**/node_modules/
+
+# Large dataset files (due to GitHub 100MB single-file limit & LFS background timeout)
+*.xlsx
+*.pkl
+
+# Build and distribution outputs
+dist/
+**/dist/
+scratch/
+**/scratch/
+
+# IDE / Tool configs
+.vscode/
+.claude/
+.windsurf/
+.idea/

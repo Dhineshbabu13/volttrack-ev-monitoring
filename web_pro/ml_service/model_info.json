@@ -1,0 +1,29 @@
+{
+  "r2_score": 0.8891,
+  "mae_km": 16.39,
+  "rmse_km": 25.63,
+  "model_name": "Random Forest Regressor",
+  "feature_columns": [
+    "motor_power_kw",
+    "soc_percent",
+    "torque",
+    "length_mm",
+    "width_mm",
+    "height_mm",
+    "wheel_base_mm",
+    "battery_capacity_kwh",
+    "weight_kg",
+    "passenger_count",
+    "vehicle_model_Atto 3",
+    "vehicle_model_Curvv EV",
+    "vehicle_model_Kona EV",
+    "vehicle_model_Nexon EV",
+    "vehicle_model_Tata Punch EV",
+    "vehicle_model_Tiago EV",
+    "vehicle_model_ZS EV",
+    "vehicle_model_e-C3",
+    "route_type_City",
+    "route_type_Highway",
+    "route_type_Mixed"
+  ]
+}

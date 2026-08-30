@@ -1,0 +1,160 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    background-color: #F8F9FA;
+    color: #111111;
+    font-family: 'Outfit', 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    overflow-x: hidden;
+  }
+
+  /* Custom Clean Scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #F1F5F9;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #CBD5E1;
+    border-radius: 9999px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: #94A3B8;
+  }
+}
+
+/* Corporate Clean Cards */
+.corporate-card {
+  background: #FFFFFF;
+  border: 1px solid #E2E8F0;
+  border-radius: 12px;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.04), 0 1px 2px -1px rgba(0, 0, 0, 0.02);
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.corporate-card-interactive {
+  background: #FFFFFF;
+  border: 1px solid #E2E8F0;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px -2px rgba(0, 0, 0, 0.05);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.corporate-card-interactive:hover {
+  border-color: #E30613;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px -4px rgba(227, 6, 19, 0.12), 0 4px 12px -2px rgba(0, 0, 0, 0.04);
+}
+
+/* Corporate Input Fields */
+.corporate-input {
+  background: #FFFFFF;
+  border: 1px solid #CBD5E1;
+  color: #0F172A;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+}
+
+.corporate-input:focus {
+  outline: none;
+  border-color: #E30613;
+  box-shadow: 0 0 0 3px rgba(227, 6, 19, 0.15);
+}
+
+.corporate-input::placeholder {
+  color: #94A3B8;
+}
+
+/* Clean Button Styles */
+.btn-red {
+  background-color: #E30613;
+  color: #FFFFFF;
+  font-weight: 600;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+}
+
+.btn-red:hover {
+  background-color: #C0040F;
+}
+
+.btn-red:active {
+  background-color: #9B030C;
+}
+
+/* Subtle Clean Red Gradient Text */
+.text-gradient-red {
+  background: linear-gradient(135deg, #111111 20%, #E30613 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+html body *::selection {
+  background-color: #E30613 !important;
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+}
+html body *::-moz-selection {
+  background-color: #E30613 !important;
+  color: #ffffff !important;
+}
+
+/* Side Drawer Animations */
+@keyframes slideInRight {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.animate-slideInRight {
+  animation: slideInRight 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.2s ease-out forwards;
+}
+
+@keyframes tabFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-tab-fade {
+  animation: tabFadeIn 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Leaflet DivIcon Custom Marker Fix */
+.leaflet-div-icon.custom-fleet-pin,
+.leaflet-div-icon.custom-vehicle-pin,
+.leaflet-div-icon.custom-station-pin,
+.custom-fleet-pin,
+.custom-vehicle-pin,
+.custom-station-pin {
+  background: transparent !important;
+  border: none !important;
+}
